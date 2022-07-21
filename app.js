@@ -33,4 +33,29 @@
 // const result = findAveragesOfSumArrays(5, [1, 3, 3, -6, 12, 2, 3, 2, -1, 3, 5])
 // console.log(`The averages of all subarrays of 'K': ${result}`)
 
+// Time complexity: Since for every element of the input array, we are calculating the sum of its next ‘K’ elements, the time complexity of the above algorithm will be O(N∗K)O(N*K)O(N∗K) where ‘N’ is the number of elements in the input array.
+
 //THis ^^^^^^ way is ineffiecint because you have 4 over lapping number being used for each set of K. Sliding Window algorithim.
+
+function findAveragesOfSumArrays(K, arr){
+    //set result to empty array
+    const result = []
+    //set window sum point for sliding window
+    let windowSum = 0.0,
+    windowStart = 0
+    for (windowEnd = 0; windowEnd < arr.length; windowEnd++){
+        windowSum += arr[windowEnd] // add the next element
+        // slide the window, we don't need to slide if we've not hit the required window size of 'k'
+        if (windowEnd >= K - 1) {
+            result.push(windowSum / K, ' ') //calculate average
+            windowSum -= arr[windowStart] // subtract the element going out
+            windowStart += 1 //slide the window over one element in array
+        }
+    }
+    return result
+}
+
+const result = findAveragesOfSumArrays(5, [10, 3, 3, -6, 12, 2, 3, 2, -1, 3, 5])
+console.log(`The averages of all subarrays of size 'K': ${result}`)
+
+//A more efficient way of solving. We can reuse the sum by subtracting the previous number going out and adding the next number coming up. This will save us from going through the whole subarray to find the sum and, as a result, the algorithm complexity will reduce to O(N).
