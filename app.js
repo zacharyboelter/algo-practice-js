@@ -59,3 +59,25 @@ const result = findAveragesOfSumArrays(5, [10, 3, 3, -6, 12, 2, 3, 2, -1, 3, 5])
 console.log(`The averages of all subarrays of size 'K': ${result}`)
 
 //A more efficient way of solving. We can reuse the sum by subtracting the previous number going out and adding the next number coming up. This will save us from going through the whole subarray to find the sum and, as a result, the algorithm complexity will reduce to O(N).
+
+
+function sum(arr, n) {
+    s = 0
+    for (i = 0; i < n; i++) {
+        s = s + arr[i]
+    }
+    return s
+}
+
+sum([8, 3, 9, 7, 2], 5)
+console.log(`Here is ${s}`)
+
+function add(A, B, n){
+    for (i = 0; i < n; i++){
+        for (j = 0; j < n; j++){
+            C[i, j] = A[i, j] + B[i, j]
+        }
+    }
+    return C
+}
+
